@@ -9,6 +9,10 @@ server = Flask(__name__)
 lista = []
 count_msg = 0
 
+# Empty webserver index, return nothing, just http 200
+@server.route('/', methods=['GET', 'HEAD'])
+def index():
+    return ''
 
 @server.route("/bot", methods=['POST'])
 def getMessage():
