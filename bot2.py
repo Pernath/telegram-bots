@@ -18,7 +18,7 @@ def getMessage():
 @server.route("/")
 def webhook():
     bot.remove_webhook()
-    bot.set_webhook(url="https://maubot.herokuapp.com/bot")
+    bot.set_webhook(url="https://maubot.herokuapp.com/")
     return "!", 200
 
 server.run(host="0.0.0.0", port=os.environ.get('PORT', 5000))
