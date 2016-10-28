@@ -1,8 +1,28 @@
+# -*- coding: utf-8 -*-
+import os
+from flask import Flask, request
 import telebot
+
 token = '245656240:AAG5LmYWt88UEGPh6uIH9O61HGA94QvM9xY'
 bot = telebot.TeleBot(token)
+server = Flask(__name__)
 lista = []
 count_msg = 0
+
+
+@server.route("/bot", methods=['POST'])
+def getMessage():
+    bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
+    return "!", 200
+
+@server.route("/")
+def webhook():
+    bot.remove_webhook()
+    bot.set_webhook(url="https://maubot.herokuapp.com/bot")
+    return "!", 200
+
+server.run(host="0.0.0.0", port=os.environ.get('PORT', 5000))
+server = Flask(__name__)
 
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
@@ -28,4 +48,5 @@ def answer_ray_dian(message):
 @bot.message_handler(func=lambda m: True)
 def random_reply(message):
     pass
+
 bot.polling()
