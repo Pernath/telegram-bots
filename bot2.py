@@ -2,6 +2,7 @@
 import os
 from flask import Flask, request
 import telebot
+import logging
 
 token = '245656240:AAG5LmYWt88UEGPh6uIH9O61HGA94QvM9xY'
 bot = telebot.TeleBot(token)
@@ -9,24 +10,11 @@ server = Flask(__name__)
 lista = []
 count_msg = 0
 
-# Empty webserver index, return nothing, just http 200
-@server.route('/', methods=['GET', 'HEAD'])
-def index():
-    return ''
 
-@server.route("/bot", methods=['POST'])
-def getMessage():
-    bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
-    return "!", 200
 
-@server.route("/")
-def webhook():
-    bot.remove_webhook()
-    bot.set_webhook(url="https://maubot.herokuapp.com/bot")
-    return "!", 200
+logger = telebot.logger
+telebot.logger.setLevel(logging.DEBUG)
 
-server.run(host="0.0.0.0", port=os.environ.get('PORT', 5000))
-server = Flask(__name__)
 
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
@@ -53,4 +41,19 @@ def answer_ray_dian(message):
 def random_reply(message):
     pass
 
-bot.polling()
+@server.route("/bot", methods=['POST'])
+def getMessage():
+    bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
+    return "!", 200
+
+@server.route("/")
+def webhook():
+    bot.remove_webhook()
+    bot.set_webhook(url="https://maubot.herokuapp.com/bot")
+    return "!", 200
+
+server.run(host="0.0.0.0", port=os.environ.get('PORT', 5000))
+server = Flask(__name__)
+
+
+#bot.polling()
