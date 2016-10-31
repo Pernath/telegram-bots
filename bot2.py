@@ -27,7 +27,7 @@ def mau_func(message):
         bot.reply_to(message, "La respuesta es: NO")
         count_msg += 1
     else:
-        bot.reply_to(message, "La gente está muy confundiiiiidaaaaaa...")
+        bot.send_message(message.chat.id, "La gente está muy confundiiiiidaaaaaa...")
         count_msg = 0
 
 @bot.message_handler(func=lambda m: True)
