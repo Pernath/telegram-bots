@@ -23,12 +23,18 @@ def send_welcome(message):
 @bot.message_handler(regexp='[a-zA-Z]*[\?]')
 def mau_func(message):
     global count_msg
+    '''
     if count_msg < 4:
         bot.reply_to(message, "La respuesta es: NO")
         count_msg += 1
     else:
+    '''
+    if count_msg == 7:
         bot.send_message(message.chat.id, "La gente está muy confundiiiiidaaaaaa...")
         count_msg = 0
+    else:
+        count_msg += 1
+        
 
 @bot.message_handler(func=lambda m: True)
 def answer_ray_dian(message):
