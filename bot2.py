@@ -53,8 +53,8 @@ def random_reply(message):
 
 # Se prueba el viernes 11 de noviembre
 @bot.message_handler(func=lambda m: True)
-def lobo(message):
-    bot.send_message(message.chat_id, "Las 12 pm no son las 12 de la noche")
+def lobo():
+    bot.send_message(162404891, "Las 12 pm no son las 12 de la noche")
 def lobo_schedule():
     schedule.every().day.at("11:59").do(lobo)
     while True:
