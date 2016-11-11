@@ -3,6 +3,10 @@ import os
 from flask import Flask, request
 import telebot
 import logging
+#cosas p
+import schedule
+import time
+import threading
 
 token = '245656240:AAG5LmYWt88UEGPh6uIH9O61HGA94QvM9xY'
 bot = telebot.TeleBot(token)
@@ -46,6 +50,18 @@ def answer_ray_dian(message):
 @bot.message_handler(func=lambda m: True)
 def random_reply(message):
     pass
+
+# Se prueba el viernes 11 de noviembre
+@bot.message_handler(func=lambda m: True)
+def lobo(message):
+    bot.send_message(message.chat_id, "Las 12 pm no son las 12 de la noche")
+def lobo_schedule():
+    schedule.every().day.at("11:59").do(lobo)
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
+t = threading.Thread(name='hilo_basura', target=lobo_schedule)
+t.start()
 
 @server.route("/bot", methods=['POST'])
 def getMessage():
