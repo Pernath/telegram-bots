@@ -52,7 +52,6 @@ def random_reply(message):
     pass
 
 # Se prueba el viernes 11 de noviembre
-@bot.message_handler(func=lambda m: True)
 def lobo():
     bot.send_message(162404891, "Las 12 pm no son las 12 de la noche")
 def lobo_schedule():
