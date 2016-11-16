@@ -53,9 +53,9 @@ def random_reply(message):
 
 # Se prueba el viernes 11 de noviembre
 def lobo():
-    bot.send_message(162404891, "Las 12 pm no son las 12 de la noche")
+    bot.send_message(-162404891, "Las 12 pm no son las 12 de la noche")
 def lobo_schedule():
-    schedule.every().day.at("17:30").do(lobo)
+    schedule.every().day.at("17:40").do(lobo)
     while True:
         schedule.run_pending()
         time.sleep(1)
