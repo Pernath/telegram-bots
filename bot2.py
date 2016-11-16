@@ -55,7 +55,7 @@ def random_reply(message):
 def lobo():
     bot.send_message(162404891, "Las 12 pm no son las 12 de la noche")
 def lobo_schedule():
-    schedule.every().day.at("11:59").do(lobo)
+    schedule.every().day.at("17:30").do(lobo)
     while True:
         schedule.run_pending()
         time.sleep(1)
