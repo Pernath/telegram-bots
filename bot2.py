@@ -27,12 +27,12 @@ def send_welcome(message):
 @bot.message_handler(regexp='[a-zA-Z]*[\?]')
 def mau_func(message):
     global count_msg
-    '''
+    # sorry buddy
     if count_msg < 4:
         bot.reply_to(message, "La respuesta es: NO")
         count_msg += 1
     else:
-    '''
+   
     if count_msg == 7:
         bot.send_message(message.chat.id, "La gente está muy confundiiiiidaaaaaa...")
         count_msg = 0
@@ -51,16 +51,16 @@ def answer_ray_dian(message):
 def random_reply(message):
     pass
 
-# Se prueba el viernes 11 de noviembre
+# Mau está muerto
 def lobo():
     bot.send_message(-162404891, "Las 12 pm no son las 12 de la noche")
 def lobo_schedule():
     schedule.every().day.at("17:40").do(lobo)
-    while True:
-        schedule.run_pending()
-        time.sleep(1)
-t = threading.Thread(name='hilo_basura', target=lobo_schedule)
-t.start()
+while True:
+    schedule.run_pending()
+    time.sleep(1)
+#t = threading.Thread(name='hilo_basura', target=lobo_schedule)
+#t.start()
 
 @server.route("/bot", methods=['POST'])
 def getMessage():
