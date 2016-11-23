@@ -32,12 +32,11 @@ def mau_func(message):
         bot.reply_to(message, "La respuesta es: NO")
         count_msg += 1
     else:
-   
-    if count_msg == 7:
-        bot.send_message(message.chat.id, "La gente está muy confundiiiiidaaaaaa...")
-        count_msg = 0
-    else:
-        count_msg += 1
+        if count_msg == 7:
+            bot.send_message(message.chat.id, "La gente está muy confundiiiiidaaaaaa...")
+            count_msg = 0
+        else:
+            count_msg += 1
         
 
 @bot.message_handler(func=lambda m: True)
@@ -59,8 +58,8 @@ def lobo_schedule():
 while True:
     schedule.run_pending()
     time.sleep(1)
-#t = threading.Thread(name='hilo_basura', target=lobo_schedule)
-#t.start()
+t = threading.Thread(name='hilo_basura', target=lobo_schedule)
+t.start()
 
 @server.route("/bot", methods=['POST'])
 def getMessage():
