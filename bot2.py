@@ -6,7 +6,7 @@ import logging
 #cosas p
 import schedule
 import time
-import threading
+#import threading
 
 token = '245656240:AAG5LmYWt88UEGPh6uIH9O61HGA94QvM9xY'
 bot = telebot.TeleBot(token)
@@ -50,7 +50,7 @@ def answer_ray_dian(message):
 def random_reply(message):
     pass
 
-# Mau está muerto
+'''
 def lobo():
     bot.send_message(-162404891, "Las 12 pm no son las 12 de la noche")
 def lobo_schedule():
@@ -60,6 +60,7 @@ while True:
     time.sleep(1)
 t = threading.Thread(name='hilo_basura', target=lobo_schedule)
 t.start()
+'''
 
 @server.route("/bot", methods=['POST'])
 def getMessage():
