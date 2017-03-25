@@ -7,7 +7,7 @@ import logging
 import schedule
 import time
 #import threading
-import urllib.request
+#import urllib.request
 
 token = '245656240:AAG5LmYWt88UEGPh6uIH9O61HGA94QvM9xY'
 bot = telebot.TeleBot(token)
