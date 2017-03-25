@@ -84,8 +84,7 @@ def webhook():
     return "!", 200
 
 def choose_gif():
-    l = 
-{0:"http://filthygifs.tumblr.com/",1:"http://nsfwgifland.tumblr.com/",2:"http://madporngifs.tumblr.com/", 
+    l = {0:"http://filthygifs.tumblr.com/",1:"http://nsfwgifland.tumblr.com/",2:"http://madporngifs.tumblr.com/", 
 4:"http://nsfwgifs.tumblr.com/"}
     a = random.randint(0,len(l)-1)
     pagina = (l[a])
