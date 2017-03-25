@@ -7,6 +7,7 @@ import logging
 import schedule
 import time
 #import threading
+from urllib.request import urlopen
 
 token = '245656240:AAG5LmYWt88UEGPh6uIH9O61HGA94QvM9xY'
 bot = telebot.TeleBot(token)
@@ -26,7 +27,7 @@ def send_welcome(message):
 
 @bot.message_handler(commands=['show'])
 def send_gif(message):
-    reply(gif=urllib2.urlopen('http://www.reactiongifs.us/wp-content/uploads/2014/08/popcorn_indiana_jones.gif').read())
+    bot.send_message(gif=urlopen('http://www.reactiongifs.us/wp-content/uploads/2014/08/popcorn_indiana_jones.gif').read())
 
 @bot.message_handler(regexp='[a-zA-Z]*[\?]')
 def mau_func(message):
