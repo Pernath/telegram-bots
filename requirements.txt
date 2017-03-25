@@ -1,3 +1,6 @@
 pyTelegramBotAPI
 flask
 schedule
+lxml
+requests
+beautifulsoup4

@@ -7,7 +7,10 @@ import logging
 import schedule
 import time
 #import threading
-#import urllib.request
+from bs4 import BeautifulSoup
+import requests
+import random
+import re
 
 token = '245656240:AAG5LmYWt88UEGPh6uIH9O61HGA94QvM9xY'
 bot = telebot.TeleBot(token)
@@ -28,7 +31,7 @@ def send_welcome(message):
 @bot.message_handler(commands=['show'])
 def send_gif(message):
     bot.reply_to(message, "Hola!")
-    bot.send_document(message.chat.id, "https://gfycat.com/WeakBareIzuthrush")
+    bot.send_document(message.chat.id, choose_gif())
 
 @bot.message_handler(regexp='[a-zA-Z]*[\?]')
 def mau_func(message):
@@ -78,6 +81,26 @@ def webhook():
     bot.remove_webhook()
     bot.set_webhook(url="https://maubot.herokuapp.com/bot")
     return "!", 200
+
+def choose_gif():
+    l = {0:"http://filthygifs.tumblr.com/",1:"http://nsfwgifland.tumblr.com/",2:"http://madporngifs.tumblr.com/"}
+    a = random.randint(0,len(l)-1)
+    pagina = (l[a])
+
+    r = requests.get(pagina)
+    data = r.text
+    # Creamos el objeto soup y le pasamos lo capturado con request
+    soup = BeautifulSoup(data, 'lxml')    
+    titulo = soup.title.text
+    
+    print(titulo)
+    #filtrado de img y gifs
+    todas = soup.find_all('img',src=re.compile('\d+\.gif$'))
+    a = random.randint(0,len(todas))
+    out = todas[a]['src']
+    print(out)
+    return out
+
 
 server.run(host="0.0.0.0", port=os.environ.get('PORT', 5000))
 server = Flask(__name__)
