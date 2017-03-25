@@ -29,7 +29,7 @@ def mau_func(message):
     global count_msg
     # sorry buddy
     if count_msg < 4:
-        bot.reply_to(message, "La respuesta es: NO")
+        #bot.reply_to(message, "La respuesta es: NO")
         count_msg += 1
     else:
         if count_msg == 7:
