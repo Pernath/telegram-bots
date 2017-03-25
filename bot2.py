@@ -27,7 +27,8 @@ def send_welcome(message):
 
 @bot.message_handler(commands=['show'])
 def send_gif(message):
-    bot.send_message(message.chat.id, 'http://www.reactiongifs.us/wp-content/uploads/2014/08/popcorn_indiana_jones.gif')
+    bot.reply_to(message, "Hola!")
+    bot.send_document(message.chat.id, 'http://www.reactiongifs.us/wp-content/uploads/2014/08/popcorn_indiana_jones.gif')
 
 @bot.message_handler(regexp='[a-zA-Z]*[\?]')
 def mau_func(message):
