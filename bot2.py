@@ -30,7 +30,7 @@ def send_welcome(message):
 
 @bot.message_handler(regexp=['[a-zA-Z]*'])
 def send_gif(message):
-    if 'nudes' or 'Nudes' in message :
+    if 'nudes' in message :
         bot.reply_to(message, "Ese bot ShowNudes me la pela... Estoy tratando de conseguir material más nuevo y primitivo para ti... :v")
         bot.send_document(message.chat.id, choose_gif())
 
