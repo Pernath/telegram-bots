@@ -24,6 +24,10 @@ telebot.logger.setLevel(logging.DEBUG)
 def send_welcome(message):
     bot.reply_to(message, "Hola! Mi nombre es Mauricio y soy un bot. He venido desde el espacio proyectivo complejo para hacerte la vida un poquito complicada ;)")
 
+@bot.message_handler(commands=['show'])
+def send_gif(message):
+    reply(gif=urllib2.urlopen('http://www.reactiongifs.us/wp-content/uploads/2014/08/popcorn_indiana_jones.gif').read())
+
 @bot.message_handler(regexp='[a-zA-Z]*[\?]')
 def mau_func(message):
     global count_msg
