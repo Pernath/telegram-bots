@@ -28,9 +28,9 @@ telebot.logger.setLevel(logging.DEBUG)
 def send_welcome(message):
     bot.reply_to(message, "Hola! Mi nombre es Mauricio y soy un bot. He venido desde el espacio proyectivo complejo para hacerte la vida un poquito complicada ;)")
 
-@bot.message_handler(regexp=['[a-zA-Z]*')
+@bot.message_handler(regexp=['\d+')
 def send_gif(message):
-    if 'nudes' or 'nudes' in message.text : # and message.chat.id == -111035766:
+    if 'nudes' or 'nudes' in message.text: # and message.chat.id == -111035766:
         bot.reply_to(message, "Ese bot ShowNudes me la pela... Estoy tratando de conseguir material más nuevo y primitivo para ti... :v")
         bot.send_document(message.chat.id, choose_gif())
 
