@@ -85,8 +85,9 @@ def webhook():
 
 def choose_gif():
     l = {0:"http://filthygifs.tumblr.com/",1:"http://nsfwgifland.tumblr.com/",2:"http://madporngifs.tumblr.com/", 
-4:"http://nsfwgifs.tumblr.com/"}
+         4:"http://nsfwgifs.tumblr.com/",5:"http://www.poringa.net/posts/imagenes/2520377/Gifs-de-la-tetona-Hitomi-Tanaka.html"}
     a = random.randint(0,len(l)-1)
+    print("LOG: intento escoger de %s",l[a])
     pagina = (l[a])
 
     r = requests.get(pagina)
@@ -98,7 +99,7 @@ def choose_gif():
     print(titulo)
     #filtrado de img y gifs
     todas = soup.find_all('img',src=re.compile('\d+\.gif$'))
-    a = random.randint(0,len(todas))
+    a = random.randint(0,len(todas)-1)
     out = todas[a]['src']
     print(out)
     return out
