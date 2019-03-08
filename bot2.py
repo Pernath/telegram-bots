@@ -33,6 +33,10 @@ def send_gif(message):
     if 'nudes' in message.text and (message.chat.id == -111035766 or message.from_user.username == "LumaEmu"):
         bot.reply_to(message, "Ese bot ShowNudes me la pela... Estoy tratando de conseguir material más nuevo y primitivo para ti... :v")
         bot.send_document(message.chat.id, choose_gif())
+        try:
+            bot.send_document(message.chat.id, parse_fallback("https://www.sex.com/gifs/?sort=popular&sub=week"))
+        except:
+            bot.reply_to(message, "Fallé miserablemente.")
 
 @bot.message_handler(regexp='[a-zA-Z]*[\?]')
 def mau_func(message):
@@ -82,6 +86,22 @@ def webhook():
     bot.remove_webhook()
     bot.set_webhook(url="https://maubot.herokuapp.com/bot")
     return "!", 200
+
+def parse_fallback(pagina):
+    r = requests.get(pagina)
+    data = r.text
+    # Creamos el objeto soup y le pasamos lo capturado con request
+    soup = BeautifulSoup(data, 'lxml')    
+    titulo = soup.title.text
+    
+    print(titulo)
+    #filtrado de img y gifs
+    todas = soup.find_all('img',src=re.compile('\d+\.gif$'))
+    a = random.randint(0,len(todas)-1)
+    out = todas[a]['src']
+    if not out:
+        out = "https://images.sex.com/images/pinporn/2019/03/03/460/20770858.gif"
+    return out
 
 def choose_gif():
     l = {0:"http://filthygifs.tumblr.com/",1:"http://nsfwgifland.tumblr.com/",2:"http://madporngifs.tumblr.com/", 
