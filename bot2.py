@@ -93,7 +93,7 @@ def parse_fallback(pagina):
     # Creamos el objeto soup y le pasamos lo capturado con request
     soup = BeautifulSoup(data, 'lxml')    
     titulo = soup.title.text
-    #import pdb; pdb.set_trace()
+    
     print(titulo)
     #filtrado de img y gifs
     todas = soup.findAll("img", {"data-src":re.compile('\d+\.gif$')})#soup.find_all('img',src=re.compile('\d+\.gif$'))
