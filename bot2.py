@@ -93,12 +93,14 @@ def parse_fallback(pagina):
     # Creamos el objeto soup y le pasamos lo capturado con request
     soup = BeautifulSoup(data, 'lxml')    
     titulo = soup.title.text
-    
+    #import pdb; pdb.set_trace()
     print(titulo)
     #filtrado de img y gifs
-    todas = soup.find_all('img',src=re.compile('\d+\.gif$'))
-    a = random.randint(0,len(todas)-1)
-    out = todas[a]['src']
+    todas = soup.findAll("img", {"data-src":re.compile('\d+\.gif$')})#soup.find_all('img',src=re.compile('\d+\.gif$'))
+    if not todas:
+        return "https://images.sex.com/images/pinporn/2019/03/03/460/20770858.gif"
+    a = random.randint(0,len(todas))
+    out = todas[a]['data-src']
     if not out:
         out = "https://images.sex.com/images/pinporn/2019/03/03/460/20770858.gif"
     return out
