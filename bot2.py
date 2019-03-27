@@ -37,9 +37,10 @@ def send_gif(message):
         except:
             bot.reply_to(message, "Segundo intento...")
         try:
-            bot.send_document(message.chat.id, parse_fallback("https://www.sex.com/gifs/?sort=popular&sub=week"))
+            giflink = parse_fallback("https://www.sex.com/gifs/?sort=popular&sub=week")
+            bot.send_document(message.chat.id, giflink)
         except Exception as error:
-            print("LOG:",str(error))
+            print("LOG:",str(error),giflink)
             bot.reply_to(message, "Fallé miserablemente... por pendejo.")
 
 @bot.message_handler(regexp='[a-zA-Z]*[\?]')
