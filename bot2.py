@@ -98,7 +98,7 @@ def parse_fallback(pagina):
     soup = BeautifulSoup(data, 'lxml')    
     titulo = soup.title.text
     
-    print(titulo)
+    #print(titulo)
     #filtrado de img y gifs
     todas = soup.findAll("img", {"data-src":re.compile('\d+\.gif$')})#soup.find_all('img',src=re.compile('\d+\.gif$'))
     if not todas:
