@@ -32,7 +32,10 @@ def send_welcome(message):
 def send_gif(message):
     if 'nudes' in message.text and (message.chat.id == -111035766 or message.from_user.username == "LumaEmu"):
         bot.reply_to(message, "Ese bot ShowNudes me la pela... Estoy tratando de conseguir material más nuevo y primitivo para ti... :v")
-        bot.send_document(message.chat.id, choose_gif())
+        try:
+            bot.send_document(message.chat.id, choose_gif())
+        except:
+            bot.reply_to(message, "Segundo intento...")
         try:
             bot.send_document(message.chat.id, parse_fallback("https://www.sex.com/gifs/?sort=popular&sub=week"))
         except Exception as error:
