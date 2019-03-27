@@ -34,6 +34,7 @@ def send_gif(message):
         bot.reply_to(message, "Ese bot ShowNudes me la pela... Estoy tratando de conseguir material más nuevo y primitivo para ti... :v")
         try:
             bot.send_document(message.chat.id, choose_gif())
+            print("\n\nSEGUNDO INTENTOOOOO\n\n\n")
             giflink = parse_fallback("https://www.sex.com/gifs/?sort=popular&sub=week")
             bot.send_document(message.chat.id, str(giflink))
         except Exception as error:
