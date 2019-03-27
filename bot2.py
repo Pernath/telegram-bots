@@ -11,6 +11,7 @@ from bs4 import BeautifulSoup
 import requests
 import random
 import re
+import platform
 
 token = '245656240:AAG5LmYWt88UEGPh6uIH9O61HGA94QvM9xY'
 bot = telebot.TeleBot(token)
@@ -25,7 +26,8 @@ telebot.logger.setLevel(logging.DEBUG)
 
 
 @bot.message_handler(commands=['start', 'help'])
-def send_welcome(message):
+def send_welcome(message):    
+    print(platform.python_version())    
     bot.reply_to(message, "Hola! Mi nombre es Mauricio y soy un bot. He venido desde el espacio proyectivo complejo para hacerte la vida un poquito complicada ;)")
 
 @bot.message_handler(regexp='[a-zA-Z]*')
