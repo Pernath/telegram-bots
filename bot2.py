@@ -35,8 +35,9 @@ def send_gif(message):
         bot.send_document(message.chat.id, choose_gif())
         try:
             bot.send_document(message.chat.id, parse_fallback("https://www.sex.com/gifs/?sort=popular&sub=week"))
-        except:
-            bot.reply_to(message, "Fallé miserablemente.")
+        except Exception as error:
+            print("LOG:",str(error))
+            bot.reply_to(message, "Fallé miserablemente... por pendejo.")
 
 @bot.message_handler(regexp='[a-zA-Z]*[\?]')
 def mau_func(message):
