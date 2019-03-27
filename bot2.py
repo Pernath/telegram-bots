@@ -33,12 +33,13 @@ def send_gif(message):
     if 'nudes' in message.text and (message.chat.id == -111035766 or message.from_user.username == "LumaEmu"):
         bot.reply_to(message, "Ese bot ShowNudes me la pela... Estoy tratando de conseguir material más nuevo y primitivo para ti... :v")
         try:
+            giflink = parse_fallback("https://www.sex.com/gifs/?sort=popular&sub=week")
             bot.send_document(message.chat.id, choose_gif())
             print("\n\nSEGUNDO INTENTOOOOO\n\n\n")
-            giflink = parse_fallback("https://www.sex.com/gifs/?sort=popular&sub=week")
-            bot.send_document(message.chat.id, str(giflink))
+            
+            bot.send_document(message.chat.id, giflink)
         except Exception as error:
-            print("LOG:",str(error),str(giflink))
+            print("LOG:",str(error))
             bot.reply_to(message, "Fallé miserablemente... por pendejo.")
 
 @bot.message_handler(regexp='[a-zA-Z]*[\?]')
