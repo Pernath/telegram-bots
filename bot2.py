@@ -124,10 +124,12 @@ def choose_gif():
     soup = BeautifulSoup(data, 'lxml')    
     titulo = soup.title.text
     
-    print(titulo)
+    #print(titulo)
     #filtrado de img y gifs
     todas = soup.find_all('img',src=re.compile('\d+\.gif$'))
-    a = random.randint(0,len(todas)-1)
+    if not todas:
+        return "https://thumbs.gfycat.com/RecentGlamorousHippopotamus-mobile.mp4"
+    a = random.randint(0,len(todas))
     out = todas[a]['src']
     print(out)
     return out
