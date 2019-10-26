@@ -32,10 +32,10 @@ def send_welcome(message):
 
 @bot.message_handler(regexp='[a-zA-Z]*')
 def send_gif(message):
-    if 'nudes' in message.text and (message.chat.id == -111035766 or message.from_user.username == "LumaEmu"):
+    if 'NUDES' in str(message.text).upper() and (message.chat.id == -111035766 or message.from_user.username == "LumaEmu"):
         bot.reply_to(message, "Ese bot ShowNudes me la pela... Estoy tratando de conseguir material más nuevo y primitivo para ti... :v")
         try:
-            giflink = parse_fallback("https://www.sex.com/gifs/?sort=popular&sub=week")
+            giflink = parse_fallback("https://www.gifs-porno.com/top10")#parse_fallback("https://www.sex.com/gifs/?sort=popular&sub=week")
             bot.send_document(message.chat.id, choose_gif())
             print("\n\nSEGUNDO INTENTOOOOO\n\n\n")
             
@@ -94,6 +94,27 @@ def webhook():
     return "!", 200
 
 def parse_fallback(pagina):
+    r = requests.get(pagina)
+    data = r.text
+    # Creamos el objeto soup y le pasamos lo capturado con request
+    soup = BeautifulSoup(data, 'lxml')    
+    titulo = soup.title.text
+    
+    #print(titulo)
+    #filtrado de img y gifs
+    all = soup.findAll("li", {"class":"g1-collection-item"})
+    todas = [x.findAll("img")[0]['data-src'] for x in all]
+    #import pdb; pdb.set_trace()
+    if not todas:
+        return "https://images.sex.com/images/pinporn/2019/10/20/620/22016497.gif"
+    a = random.randint(0,len(todas))
+    out = todas[a]#['data-src']
+    if not out:
+        out = "https://images.sex.com/images/pinporn/2019/10/19/620/22008940.gif"
+    return out
+
+
+def parse_fallback2(pagina):
     r = requests.get(pagina)
     data = r.text
     # Creamos el objeto soup y le pasamos lo capturado con request
