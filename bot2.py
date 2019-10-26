@@ -102,17 +102,16 @@ def parse_fallback(pagina):
     
     #print(titulo)
     #filtrado de img y gifs
-    all = soup.findAll("li", {"class":"g1-collection-item"})
-    todas = [x.findAll("img")[0]['data-src'] for x in all]
     #import pdb; pdb.set_trace()
+    all = soup.findAll("img", {'data-src':re.compile(r".\.gif$")})#"li", {"class":"g1-collection-item"})
+    todas = [x['data-src'] for x in all]
     if not todas:
         return "https://images.sex.com/images/pinporn/2019/10/20/620/22016497.gif"
-    a = random.randint(0,len(todas))
+    a = random.randint(0,len(todas)-1)
     out = todas[a]#['data-src']
     if not out:
         out = "https://images.sex.com/images/pinporn/2019/10/19/620/22008940.gif"
     return out
-
 
 def parse_fallback2(pagina):
     r = requests.get(pagina)
